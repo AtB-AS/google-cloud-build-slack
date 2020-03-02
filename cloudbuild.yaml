@@ -5,15 +5,27 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'ci']
 
-- name: 'gcr.io/node-example-gke/codecov'
-  args: 
-  - '-t'
-  - '9f85adb7-4781-4cf9-80dd-c08882620b0a'
-  - '-C'
-  - '$COMMIT_SHA'
-  - '-B'
-  - '$BRANCH_NAME'
-  - '-b'
-  - '$BUILD_ID'
-  - 'T'
-  - '$TAG_NAME'
+- id: 'setup function'
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'setup']
+  env:
+  - 'PROJECT=$PROJECT_ID'
+  - 'FUNCTION=subscribeSlack'
+  - 'GC_SLACK_STATUS="FAILURE TIMEOUT INTERNAL_ERROR"'
+  secretEnv: [SLACK_WEBHOOK_URL]
+
+- id: 'deploy function'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions',
+  'deploy',
+  'subscribeSlack',
+  '--trigger-topic=cloud-builds',
+  '--entry-point=subscribe',
+  '--region=europe-west1',
+  '--runtime=nodejs8'
+  ]
+
+secrets:
+- kmsKeyName: projects/atb-mobility-platform/locations/europe-west1/keyRings/amp/cryptoKeys/environment-secrets
+  secretEnv:
+    SLACK_WEBHOOK_URL: CiQAEoREfAfCwfxGoheq/lKDmjD7CklEWPJLmeSZ27g+6wGwG54ScABKVmG/E4w3M2VPCS/2JMzm8PPjp+4YeywmKootP6aQYSx8uq1v9yyFmLXZSmJSlHqKyBmMIfRB2JN43d2b2S/X/7ZZV5znatMQPryH6cDvg51or/8I4zhYFMkIjYL1Ims1nNmrxUM4xb61PoUQUlo=

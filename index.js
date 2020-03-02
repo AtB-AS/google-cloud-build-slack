@@ -129,7 +129,7 @@ module.exports.createSlackMessage = async (build, githubCommit) => {
       value: branchName,
     });
 
-    if (githubCommit) {
+    if (githubCommit && githubCommit.data && githubCommit.data.author) {
       message.attachments[0].fields.push({
         title: 'Commit Author',
         value: githubCommit.data.author.name,
