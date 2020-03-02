@@ -28,4 +28,4 @@ steps:
 secrets:
 - kmsKeyName: projects/atb-mobility-platform/locations/europe-west1/keyRings/amp/cryptoKeys/environment-secrets
   secretEnv:
-    SLACK_WEBHOOK_URL: CiQAEoREfAfCwfxGoheq/lKDmjD7CklEWPJLmeSZ27g+6wGwG54ScABKVmG/E4w3M2VPCS/2JMzm8PPjp+4YeywmKootP6aQYSx8uq1v9yyFmLXZSmJSlHqKyBmMIfRB2JN43d2b2S/X/7ZZV5znatMQPryH6cDvg51or/8I4zhYFMkIjYL1Ims1nNmrxUM4xb61PoUQUlo=
+    SLACK_WEBHOOK_URL: CiQAEoREfFYHGWLa3xh1P8UR5Br7pMSh2l0EHfz96q0wFnAnKU0SdgBKVmG/xMfq5bo9oOwpNNSmv52sjKLWm5vd7MHzm8RAh1e2s0+JT7BMpoEt/hgPnoYKpqbeebT9aFNGXPdxrAQ+WTnXb+OP+BVEIAjzbbZFyWeaAUsV03w6FoVa42mMGj4HP7Hei1YR3uNhB8ut3EsxCBK/tLQ=
