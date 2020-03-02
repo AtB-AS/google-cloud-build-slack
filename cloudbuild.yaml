@@ -11,7 +11,7 @@ steps:
   env:
   - 'PROJECT=$PROJECT_ID'
   - 'FUNCTION=subscribeSlack'
-  - 'GC_SLACK_STATUS="FAILURE TIMEOUT INTERNAL_ERROR"'
+  - 'GC_SLACK_STATUS=FAILURE TIMEOUT INTERNAL_ERROR'
   secretEnv: [SLACK_WEBHOOK_URL]
 
 - id: 'deploy function'
